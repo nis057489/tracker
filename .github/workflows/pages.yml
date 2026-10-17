@@ -29,9 +29,12 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Turns Pages on for the repo the first time this runs, so there is no
-      # manual step in Settings.
+      # Tries to switch Pages on by itself. The workflow token usually lacks the
+      # admin scope the create-Pages-site API wants, so this is allowed to fail:
+      # enable Pages once under Settings -> Pages -> Source: GitHub Actions and
+      # every run after that is fully automatic.
       - uses: actions/configure-pages@v5
+        continue-on-error: true
         with:
           enablement: true
 

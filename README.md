@@ -40,9 +40,14 @@ Live at **https://nis057489.github.io/tracker/**
 
 Pushing to `main` deploys it. `.github/workflows/pages.yml` runs the test suite,
 assembles just the app files into `_site` (tests and tooling are not published),
-and uploads them to GitHub Pages; the first run enables Pages on the repository
-itself, so there is no manual step. If it ever needs setting by hand:
-Settings → Pages → Source → **GitHub Actions**.
+and uploads them to GitHub Pages.
+
+**One-time setup:** Settings → Pages → Build and deployment → Source →
+**GitHub Actions**. Creating a Pages site needs repo-admin scope, which the
+workflow token does not have, so the workflow's attempt to enable it is allowed
+to fail. Once the setting is flipped, every push to `main` deploys on its own
+(or run it by hand from the Actions tab — the workflow accepts
+`workflow_dispatch`).
 
 Every path in the app is relative, so serving from `/<repo>/` works as-is — and
 so does any other static host (Netlify, Cloudflare Pages, S3) if you move it.
