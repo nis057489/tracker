@@ -1,0 +1,12 @@
+{
+  "name": "time-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline-first PWA for tracking daily activities over years, stored in the browser.",
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "test": "node --test tests/",
+    "icons": "node tools/gen-icons.mjs"
+  }
+}

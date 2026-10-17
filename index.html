@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Time Tracker</title>
+<meta name="description" content="Track how much time you spend on daily activities, and watch the pattern over years. Offline, local-only, installable.">
+<meta name="theme-color" content="#f9f9f7">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Time Tracker">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="app-head">
+    <span class="app-mark" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" class="icon"><path d="M12 7v5l3 2M3.5 12a8.5 8.5 0 1017 0 8.5 8.5 0 10-17 0"/></svg>
+    </span>
+    <h1>Time Tracker</h1>
+  </header>
+
+  <nav id="nav" aria-label="Sections"></nav>
+  <div id="banner" role="alert"></div>
+
+  <main id="view">
+    <noscript>
+      <p>This app needs JavaScript: it keeps your time log in your own browser and draws the charts locally.</p>
+    </noscript>
+  </main>
+
+  <div id="toasts" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

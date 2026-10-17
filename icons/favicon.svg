@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Time Tracker">
+  <rect width="64" height="64" rx="14" fill="#2a78d6"/>
+  <g fill="#fcfcfb">
+    <rect x="14" y="35" width="8" height="14" rx="2.5"/>
+    <rect x="28" y="26" width="8" height="23" rx="2.5"/>
+    <rect x="42" y="16" width="8" height="33" rx="2.5"/>
+  </g>
+</svg>
