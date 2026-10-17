@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish; queue at most one more.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The app has no dependencies, so there is nothing to install.
+      - name: Run tests
+        run: npm test
+
+      # Turns Pages on for the repo the first time this runs, so there is no
+      # manual step in Settings.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # Publish only what the app needs — tests and tooling stay out of the site.
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html app.css manifest.webmanifest sw.js _site/
+          cp -R js icons _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

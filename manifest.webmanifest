@@ -4,7 +4,6 @@
   "description": "Track how much time you spend on daily activities, and watch the pattern over years.",
   "start_url": "./index.html",
   "scope": "./",
-  "id": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#f9f9f7",

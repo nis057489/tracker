@@ -34,8 +34,29 @@ Installed, it opens in its own window, keeps working offline, and the icon is
 there to tap. It's still the same browser profile underneath, so the data is
 shared with the tab you installed it from.
 
-Hosting is any static host: GitHub Pages, Netlify, Cloudflare Pages, S3. Copy the
-directory as-is; all paths are relative, so a subdirectory works too.
+## Deploy
+
+Live at **https://nis057489.github.io/tracker/**
+
+Pushing to `main` deploys it. `.github/workflows/pages.yml` runs the test suite,
+assembles just the app files into `_site` (tests and tooling are not published),
+and uploads them to GitHub Pages; the first run enables Pages on the repository
+itself, so there is no manual step. If it ever needs setting by hand:
+Settings → Pages → Source → **GitHub Actions**.
+
+Every path in the app is relative, so serving from `/<repo>/` works as-is — and
+so does any other static host (Netlify, Cloudflare Pages, S3) if you move it.
+
+Two things worth knowing when you deploy:
+
+- **Each URL has its own data.** `localStorage` is scoped to origin + path, so
+  what you logged on `localhost:8080` is not what you see on the Pages URL, and a
+  custom domain later would start empty again. Move data with Settings → Export
+  JSON, then Import on the other URL. Pick the URL you intend to live on before
+  you start tracking in earnest.
+- **Bump `CACHE` in `sw.js`** whenever you change app files. That changes the
+  service worker's own bytes, which is what makes installed copies notice the
+  update and show the "new version is ready" reload prompt.
 
 ## Using it
 
